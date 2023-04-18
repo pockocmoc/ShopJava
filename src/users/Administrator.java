@@ -1,3 +1,5 @@
+package users;
+
 public class Administrator extends Human {
     public Administrator() {
         super( 1, 1,"Sabirov", "Marat", "Fagimovich",

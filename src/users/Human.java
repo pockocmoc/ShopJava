@@ -1,4 +1,6 @@
-public abstract class Human {
+package users;
+
+public  class Human {
     private int id;
     private int isItAnAdministrator;
     private String surname;

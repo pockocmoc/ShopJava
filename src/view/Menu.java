@@ -22,7 +22,7 @@ public class Menu {
 
     public static void pageMenuLoginView() {
         delimiter();
-        System.out.println("\t\tВход");
+        System.out.println("\t\tАвторизация.");
         System.out.println("Введите логин: ");
         String  loginName = ConsoleInputLine.readStringFromConsole();
         System.out.println("Введите пароль: ");
@@ -34,6 +34,13 @@ public class Menu {
     public static void pageMenuRegisterView() {
         delimiter();
         System.out.println("\t\tРегистрация пользователя.");
+        System.out.println("Введите фамилию: ");
+        System.out.println("Введите имя: ");
+        System.out.println("Введите отчество: ");
+        System.out.println("Введите номер телефона: ");
+        System.out.println("Введите адрес электронной почты: ");
+        System.out.println("Введите  логин: ");
+        System.out.println("Введите пароль: ");
 
 
     }

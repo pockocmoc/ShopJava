@@ -1,3 +1,5 @@
+package users;
+
 import java.math.BigDecimal;
 
 public class Buyer extends Human {
@@ -8,4 +10,5 @@ public class Buyer extends Human {
         super(id, isItAnAdministrator, surname, name, patronymic, phoneNumber, email, login, password);
         this.wallet = wallet;
     }
+
 }
