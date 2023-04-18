@@ -1,6 +1,8 @@
 package view;
 
+import validation.ConsoleInputLine;
 import validation.EnterName;
+import validation.LoginValidator;
 import validation.NameValidator;
 
 public class Menu {
@@ -17,6 +19,25 @@ public class Menu {
         System.out.println("2. Зарегистрироваться.");
         System.out.println("3. Выход.");
     }
+
+    public static void pageMenuLoginView() {
+        delimiter();
+        System.out.println("\t\tВход");
+        System.out.println("Введите логин: ");
+        String  loginName = ConsoleInputLine.readStringFromConsole();
+        System.out.println("Введите пароль: ");
+        String password = ConsoleInputLine.readStringFromConsole();
+
+
+    }
+
+    public static void pageMenuRegisterView() {
+        delimiter();
+        System.out.println("\t\tРегистрация пользователя.");
+
+
+    }
+
     public static void pageAuthorizationView() {
         delimiter();
         System.out.println("Введите вашу фамилию: ");
