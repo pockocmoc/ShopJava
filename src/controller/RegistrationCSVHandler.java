@@ -5,6 +5,7 @@ import java.util.List;
 
 import users.Buyer;
 import validation.ConsoleInputLine;
+import validation.NameValidator;
 
 
 public class RegistrationCSVHandler {
@@ -13,9 +14,12 @@ public class RegistrationCSVHandler {
     static List<Buyer> buyers = new ArrayList<>();
 
     public static void addNewBuyer() {
-//        Scanner scanner = new Scanner(System.in);
         System.out.println("Введите фамилию: ");
         String surnameBuyer = ConsoleInputLine.readStringFromConsole();
+        if (NameValidator.isValidName(surnameBuyer)) {
+            System.out.println("Неверный формат фамилии.");
+            return;
+        }
         System.out.println("Введите имя: ");
         String nameBuyer = ConsoleInputLine.readStringFromConsole();
         System.out.println("Введите отчество: ");

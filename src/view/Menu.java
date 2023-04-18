@@ -2,7 +2,6 @@ package view;
 
 import validation.ConsoleInputLine;
 import validation.EnterName;
-import validation.LoginValidator;
 import validation.NameValidator;
 
 public class Menu {
@@ -46,11 +45,11 @@ public class Menu {
     }
 
     public static void pageAuthorizationView() {
-        delimiter();
-        System.out.println("Введите вашу фамилию: ");
-        String surname = EnterName.enterName();
-        if (!new NameValidator().isValidName(surname)) {
-            System.out.println("Ошибка!!! Имя должно иметь длину от 2 до 20 символов, и состоять из букв.");
-        }
+//        delimiter();
+//        System.out.println("Введите вашу фамилию: ");
+//        String surname = EnterName.enterName();
+//        if (new NameValidator().isValidName(surname)) {
+//            System.out.println("Ошибка!!! Имя должно иметь длину от 2 до 20 символов, и состоять из букв.");
+//        }
     }
 }
