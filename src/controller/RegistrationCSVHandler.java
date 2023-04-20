@@ -1,5 +1,8 @@
 package controller;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,81 +15,6 @@ public class RegistrationCSVHandler {
     static final String CSV_SEPARATOR = ",";
     static List<Buyer> buyers = new ArrayList<>();
 
-    //    public static void addNewBuyer() {
-//
-//        boolean isValid = false;
-//        while (!isValid) {
-//            System.out.println("Введите фамилию: ");
-//            String surname = ConsoleInputLine.readStringFromConsole();
-//            isValid = NameValidator.isValidName(surname);
-//            if (!isValid) {
-//                System.out.println("""
-//                        Некорректная фамилия.
-//                        Фамилия должна иметь длину от 2 до 20 символов,\s
-//                        и содержать только буквы и пробелы.""");
-//                continue;
-//            }
-//
-//            System.out.println("Введите имя: ");
-//            String name = ConsoleInputLine.readStringFromConsole();
-//            isValid = NameValidator.isValidName(name);
-//            if (!isValid) {
-//                System.out.println("""
-//                        Некорректное имя.
-//                        Имя должно иметь длину от 2 до 20 символов,\s
-//                        и содержать только буквы и пробелы.""");
-//                continue;
-//            }
-//
-//            System.out.println("Введите отчество: ");
-//            String patronymic = ConsoleInputLine.readStringFromConsole();
-//            isValid = NameValidator.isValidName(patronymic);
-//            if (!isValid) {
-//                System.out.println("""
-//                        Некорректное отчество.
-//                        Отчество должно иметь длину от 2 до 20 символов,\s
-//                        и содержать только буквы и пробелы.""");
-//                continue;
-//            }
-//
-//            System.out.println("Введите номер телефона: ");
-//            String phoneNumber = ConsoleInputLine.readStringFromConsole();
-//            isValid = PhoneNumberValidator.isValidPhoneNumber(phoneNumber);
-//            if (!isValid) {
-//                System.out.println("Некорректный номер телефона. Пожалуйста, введите корректный номер телефона.");
-//                continue;
-//            }
-//
-//            System.out.println("Введите адрес электронной почты: ");
-//            String email = ConsoleInputLine.readStringFromConsole();
-//            isValid = EmailValidator.isValidEmail(email);
-//            if (!isValid) {
-//                System.out.println("Некорректный адрес электронной почты. Пожалуйста, введите корректный адрес.");
-//                continue;
-//            }
-//
-//            System.out.println("Введите логин: ");
-//            String login = ConsoleInputLine.readStringFromConsole();
-//            isValid = LoginValidator.isValidLogin(login);
-//            if (!isValid) {
-//                System.out.println("Некорректный логин. Пожалуйста, введите корректный логин.");
-//                continue;
-//            }
-//
-//            System.out.println("Введите пароль: ");
-//            String password = ConsoleInputLine.readStringFromConsole();
-//            isValid = PasswordValidator.isValidPassword(password);
-//            if (!isValid) {
-//                System.out.println("Некорректный пароль. Пожалуйста, введите корректный пароль.");
-//                continue;
-//            }
-//
-//            buyers.add(new Buyer(1, 0, surname, name, patronymic,
-//                    phoneNumber, email, login, password, 10_000.00));
-//            CsvWriter.writeToBuyersFile(FILE_NAME_USERS, buyers);
-//        }
-//
-//    }
     public static void addNewBuyer() {
 
         boolean isSurnameValid = false;
@@ -185,10 +113,28 @@ public class RegistrationCSVHandler {
                 }
             }
 
-            buyers.add(new Buyer(1, 0, surname, name, patronymic,
+            buyers.add(new Buyer(startId(FILE_NAME_USERS), 0, surname, name, patronymic,
                     phoneNumber, email, login, password, 10_000.00));
             CsvWriter.writeToBuyersFile(FILE_NAME_USERS, buyers);
             break;
         }
+    }
+    static int startId(String fileNameBuyers) {
+        int maxId = 0;
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(fileNameBuyers));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] values = line.split(",");
+                int id = Integer.parseInt(values[0].replaceAll("\"", ""));
+                if (id > maxId) {
+                    maxId = id;
+                }
+            }
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return maxId + 1;
     }
 }

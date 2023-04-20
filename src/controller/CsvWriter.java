@@ -1,6 +1,7 @@
 package controller;
 
 import users.Buyer;
+import view.Menu;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -10,6 +11,7 @@ public class CsvWriter {
     public static void writeToBuyersFile(String fileName, List<Buyer> buyers) {
         try (FileWriter writer = new FileWriter(fileName, true)) {
             appendLineBuyers(buyers, writer);
+            Menu.delimiter();
             System.out.println("Пользователь успешно добавлен.");
         } catch (IOException e) {
             System.err.println("Ошибка записи файла: " + e.getMessage());

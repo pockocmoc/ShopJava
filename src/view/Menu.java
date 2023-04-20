@@ -1,10 +1,14 @@
 package view;
 
+import controller.LogInCSVHandler;
+import users.Buyer;
 import validation.ConsoleInputLine;
-import validation.EnterName;
-import validation.NameValidator;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Menu {
+    static final String FILE_NAME_USERS = "./src/db/users.csv";
     public static void delimiter() {
         System.out.println("*".repeat(50));
     }
@@ -23,9 +27,13 @@ public class Menu {
         delimiter();
         System.out.println("\t\tАвторизация.");
         System.out.println("Введите логин: ");
-        String  loginName = ConsoleInputLine.readStringFromConsole();
+        String loginName = ConsoleInputLine.readStringFromConsole();
         System.out.println("Введите пароль: ");
         String password = ConsoleInputLine.readStringFromConsole();
+        List<Buyer> buyers = new ArrayList<>();
+        buyers = LogInCSVHandler.readFromFile(FILE_NAME_USERS);
+
+
 
 
     }
@@ -44,12 +52,4 @@ public class Menu {
 
     }
 
-    public static void pageAuthorizationView() {
-//        delimiter();
-//        System.out.println("Введите вашу фамилию: ");
-//        String surname = EnterName.enterName();
-//        if (new NameValidator().isValidName(surname)) {
-//            System.out.println("Ошибка!!! Имя должно иметь длину от 2 до 20 символов, и состоять из букв.");
-//        }
-    }
 }
