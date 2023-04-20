@@ -1,7 +1,7 @@
 package validation;
 
 public class EmailValidator {
-    public boolean isValidEmail(String email) {
+    public static boolean isValidEmail(String email) {
         if (!email.contains("@")) {
             return false;
         }

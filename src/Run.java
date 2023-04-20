@@ -1,3 +1,4 @@
+import controller.RegistrationCSVHandler;
 import validation.InputNumberValidator;
 import view.Menu;
 
@@ -18,7 +19,8 @@ public class Run {
                 case 2:
                     runRegister();
                     break;
-
+                case 3:
+                    break;
                 default:
                     System.out.println("\n\tНекорректный ввод. Попробуйте еще раз.");
             }
@@ -35,17 +37,18 @@ public class Run {
 //                    System.out.println(ToyCSVHandler.readFromFile(FILE_NAME_TOYS));
                     break;
                 case 2:
-//                    ToyCSVHandler.addNewToy();
                     break;
-
+                case 3:
+                    break;
                 default:
                     System.out.println("\n\tНекорректный ввод. Попробуйте еще раз.");
             }
-        } while (numberOfMenu != 2);
+        } while (numberOfMenu != 3);
     }
 
     public void runRegister() {
 
+        RegistrationCSVHandler.addNewBuyer();
     }
 }
 

@@ -1,7 +1,7 @@
 package validation;
 
 public class PasswordValidator {
-    public boolean isValidPassword(String password) {
+    public static boolean isValidPassword(String password) {
         // Проверка длины пароля
         if (password.length() < 8 || password.length() > 20) {
             return false;

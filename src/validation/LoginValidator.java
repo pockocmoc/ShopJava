@@ -1,7 +1,7 @@
 package validation;
 
 public class LoginValidator {
-    public boolean isValidLogin(String login) {
+    public static boolean isValidLogin(String login) {
         // Проверка длины логина
         if (login.length() < 6 || login.length() > 20) {
             return false;
