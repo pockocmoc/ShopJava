@@ -1,6 +1,7 @@
 package controller;
 
 import users.Buyer;
+import validation.EnterName;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -8,10 +9,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static controller.RegistrationCSVHandler.FILE_NAME_USERS;
+
 public class LogInCSVHandler {
     private static final String DELIMITER = ",";
 
-    public static List<Buyer> readFromFile(String fileName) {
+    public static List<Buyer> readFromFileBuyers(String fileName) {
         List<Buyer> buyers = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
             String line;
@@ -36,4 +39,30 @@ public class LogInCSVHandler {
         }
         return buyers;
     }
+
+    public static class LoginChecker {
+        public static void checkLogin() {
+            System.out.print("Введите логин: ");
+            String login = EnterName.enterName();
+            System.out.print("Введите пароль: ");
+            String password = EnterName.enterName();
+            List<Buyer> buyers = new ArrayList<>(readFromFileBuyers(FILE_NAME_USERS));
+            for (Buyer buyer : buyers) {
+                if (buyer.getLogin().equals(login) && buyer.getPassword().equals(password)) {
+                    if (buyer.getIsItAnAdministrator() == 1) {
+                        System.out.println(login + ", вы вошли в систему как администратор");
+                    } else {
+                        System.out.println(login +": вход выполнен.");
+                        RunShopBuyerMenu runShopBuyerMenu = new RunShopBuyerMenu();
+                        runShopBuyerMenu.runBuyerMenu();
+                    }
+                    return;
+                }
+            }
+
+            System.out.println("Пользователь не найден");
+        }
+
+    }
+
 }

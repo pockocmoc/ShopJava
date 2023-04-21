@@ -1,14 +1,6 @@
 package view;
 
-import controller.LogInCSVHandler;
-import users.Buyer;
-import validation.ConsoleInputLine;
-
-import java.util.ArrayList;
-import java.util.List;
-
 public class Menu {
-    static final String FILE_NAME_USERS = "./src/db/users.csv";
     public static void delimiter() {
         System.out.println("*".repeat(50));
     }
@@ -18,38 +10,65 @@ public class Menu {
         System.out.println("\t\tМагазин \"Вымпел\".");
         delimiter();
         System.out.println("Выберите пункт меню:");
+        System.out.println();
         System.out.println("1. Авторизоваться.");
         System.out.println("2. Зарегистрироваться.");
         System.out.println("3. Выход.");
     }
 
-    public static void pageMenuLoginView() {
+
+    public static void pageMenuShopBuyers() {
         delimiter();
-        System.out.println("\t\tАвторизация.");
-        System.out.println("Введите логин: ");
-        String loginName = ConsoleInputLine.readStringFromConsole();
-        System.out.println("Введите пароль: ");
-        String password = ConsoleInputLine.readStringFromConsole();
-        List<Buyer> buyers = new ArrayList<>();
-        buyers = LogInCSVHandler.readFromFile(FILE_NAME_USERS);
+        System.out.println("\t\tМеню магазин Вымпел.");
+        delimiter();
+        System.out.println("Выберите пункт меню: ");
+        System.out.println();
+        System.out.println("1. Каталог товаров.");
+        System.out.println("2. Купить товар.");
+        System.out.println("3. Баланс.");
+        System.out.println("4. Список купленных товаров.");
+        System.out.println("5. Выход в основное меню.");
 
-
-
+    }
+    public static void pageHeadMenuShopAdmin() {
+        delimiter();
+        System.out.println("\t\tМеню администратора магазина Вымпел.");
+        delimiter();
+        System.out.println("Выберите пункт меню: ");
+        System.out.println();
+        System.out.println("1. Управление товарами.");
+        System.out.println("2. Управление покупателями");
+        System.out.println("3. Выход в основное меню.");
 
     }
 
-    public static void pageMenuRegisterView() {
+    public static void pageMenuGoodsManagement() {
         delimiter();
-        System.out.println("\t\tРегистрация пользователя.");
-        System.out.println("Введите фамилию: ");
-        System.out.println("Введите имя: ");
-        System.out.println("Введите отчество: ");
-        System.out.println("Введите номер телефона: ");
-        System.out.println("Введите адрес электронной почты: ");
-        System.out.println("Введите  логин: ");
-        System.out.println("Введите пароль: ");
-
+        System.out.println("\t\tМеню магазин Вымпел.");
+        delimiter();
+        System.out.println("Управление товарами.");
+        System.out.println();
+        System.out.println("1. Каталог товаров.");
+        System.out.println("2. Добавить товар.");
+        System.out.println("3. Изменить товар.");
+        System.out.println("4. Удалить товар.");
+        System.out.println("5. Назад.");
 
     }
+
+    public static void pageMenuCustomerManagement() {
+        delimiter();
+        System.out.println("\t\tУправление покупателями.");
+        delimiter();
+        System.out.println("Выберите пункт меню:");
+        System.out.println();
+        System.out.println("1. Список покупателей.");
+        System.out.println("2. Назначение администратора.");
+        System.out.println("3. Удаление покупателя.");
+        System.out.println("4. Назад.");
+
+    }
+
+
 
 }

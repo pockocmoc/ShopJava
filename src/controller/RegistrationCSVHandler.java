@@ -12,6 +12,7 @@ import validation.*;
 
 public class RegistrationCSVHandler {
     static final String FILE_NAME_USERS = "./src/db/users.csv";
+    static final String FILE_NAME_SOLD_OUT_GOODS = "./src/db/sold_out.csv";
     static final String CSV_SEPARATOR = ",";
     static List<Buyer> buyers = new ArrayList<>();
 
