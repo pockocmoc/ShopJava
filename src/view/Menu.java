@@ -42,6 +42,7 @@ public class Menu {
 
     }
 
+
     public static void pageMenuGoodsManagement() {
         delimiter();
         System.out.println("\t\tМеню магазин Вымпел.");

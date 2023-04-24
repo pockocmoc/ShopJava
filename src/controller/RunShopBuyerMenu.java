@@ -1,5 +1,7 @@
 package controller;
 
+import controller.product.ProductCSVHandler;
+import controller.user.LogInCSVHandler;
 import validation.InputNumberValidator;
 import view.Menu;
 
@@ -13,9 +15,10 @@ public class RunShopBuyerMenu {
             numberOfMenu = InputNumberValidator.choice();
             switch (numberOfMenu) {
                 case 1:
-                    System.out.println(LogInCSVHandler.readFromFileBuyers(FILE_NAME_PRODUCT));
+                    System.out.println(ProductCSVHandler.readFromFileProduct(FILE_NAME_PRODUCT));
                     break;
                 case 2:
+                    System.out.println();
                     break;
                 case 3:
                     break;

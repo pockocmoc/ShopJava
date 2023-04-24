@@ -1,13 +1,13 @@
-package controller;
+package controller.user;
 
-import users.Buyer;
+import model.Buyer;
 import view.Menu;
 
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 
-public class CsvWriter {
+public class CsvBuyersWriter {
     public static void writeToBuyersFile(String fileName, List<Buyer> buyers) {
         try (FileWriter writer = new FileWriter(fileName, true)) {
             appendLineBuyers(buyers, writer);

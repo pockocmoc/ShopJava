@@ -1,39 +1,29 @@
-import controller.user.LogInCSVHandler;
-import controller.user.RegistrationCSVHandler;
+package controller;
+
 import validation.InputNumberValidator;
 import view.Menu;
 
-public class Run {
+public class RunShopHeadAdminMenu {
+    static final String FILE_NAME_PRODUCT = "./src/db/product.csv";
 
-
-    public void run() {
+    public void runAdminMenu() {
         int numberOfMenu;
         do {
-            Menu.pageHeadMenuView();
+            Menu.pageHeadMenuShopAdmin();
             numberOfMenu = InputNumberValidator.choice();
             switch (numberOfMenu) {
                 case 1:
-                    runLogin();
+                    RunAdminGoodsManagement.runAdminGoodsManagement();
                     break;
                 case 2:
-                    runRegister();
+                    RunAdminCustomerManagement.runAdminCustomer();
                     break;
                 case 3:
                     break;
+
                 default:
                     System.out.println("\n\tНекорректный ввод. Попробуйте еще раз.");
             }
         } while (numberOfMenu != 3);
     }
-
-    public void runLogin() {
-        LogInCSVHandler.LoginChecker.checkLogin();
-
-    }
-
-    public void runRegister() {
-
-        RegistrationCSVHandler.addNewBuyer();
-    }
 }
-

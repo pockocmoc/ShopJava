@@ -1,3 +1,4 @@
+package model;
 
 public class Product {
     private int id;
@@ -42,6 +43,16 @@ public class Product {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    @Override
+    public String toString() {
+        char rub = '₽';
+        return "\n" + id +
+                ", " + name +
+                ", цена: " + price + " " + rub +
+                ", количество: " + quantity +
+                " шт.";
     }
 }
 

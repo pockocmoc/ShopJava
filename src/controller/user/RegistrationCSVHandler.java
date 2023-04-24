@@ -1,4 +1,4 @@
-package controller;
+package controller.user;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -6,14 +6,14 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import users.Buyer;
+import model.Buyer;
 import validation.*;
 
 
 public class RegistrationCSVHandler {
     static final String FILE_NAME_USERS = "./src/db/users.csv";
     static final String FILE_NAME_SOLD_OUT_GOODS = "./src/db/sold_out.csv";
-    static final String CSV_SEPARATOR = ",";
+    public static final String CSV_SEPARATOR = ",";
     static List<Buyer> buyers = new ArrayList<>();
 
     public static void addNewBuyer() {
@@ -116,7 +116,7 @@ public class RegistrationCSVHandler {
 
             buyers.add(new Buyer(startId(FILE_NAME_USERS), 0, surname, name, patronymic,
                     phoneNumber, email, login, password, 10_000.00));
-            CsvWriter.writeToBuyersFile(FILE_NAME_USERS, buyers);
+            CsvBuyersWriter.writeToBuyersFile(FILE_NAME_USERS, buyers);
             break;
         }
     }

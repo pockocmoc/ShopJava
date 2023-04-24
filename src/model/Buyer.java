@@ -1,4 +1,4 @@
-package users;
+package model;
 
 public class Buyer {
     private int id;

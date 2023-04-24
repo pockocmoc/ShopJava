@@ -1,6 +1,9 @@
-package controller;
+package controller.user;
 
-import users.Buyer;
+import controller.RunAdminGoodsManagement;
+import controller.RunShopBuyerMenu;
+import controller.RunShopHeadAdminMenu;
+import model.Buyer;
 import validation.EnterName;
 
 import java.io.BufferedReader;
@@ -9,10 +12,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static controller.RegistrationCSVHandler.FILE_NAME_USERS;
+import static controller.user.RegistrationCSVHandler.FILE_NAME_USERS;
 
 public class LogInCSVHandler {
-    private static final String DELIMITER = ",";
+    public static final String DELIMITER = ",";
 
     public static List<Buyer> readFromFileBuyers(String fileName) {
         List<Buyer> buyers = new ArrayList<>();
@@ -51,6 +54,8 @@ public class LogInCSVHandler {
                 if (buyer.getLogin().equals(login) && buyer.getPassword().equals(password)) {
                     if (buyer.getIsItAnAdministrator() == 1) {
                         System.out.println(login + ", вы вошли в систему как администратор");
+                        RunShopHeadAdminMenu runShopHeadAdminMenu = new RunShopHeadAdminMenu();
+                        runShopHeadAdminMenu.runAdminMenu();
                     } else {
                         System.out.println(login +": вход выполнен.");
                         RunShopBuyerMenu runShopBuyerMenu = new RunShopBuyerMenu();
