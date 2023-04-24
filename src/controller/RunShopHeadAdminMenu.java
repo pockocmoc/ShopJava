@@ -10,7 +10,7 @@ public class RunShopHeadAdminMenu {
         int numberOfMenu;
         do {
             Menu.pageHeadMenuShopAdmin();
-            numberOfMenu = InputNumberValidator.choice();
+            numberOfMenu = InputNumberValidator.choiceInt();
             switch (numberOfMenu) {
                 case 1:
                     RunAdminGoodsManagement.runAdminGoodsManagement();

@@ -1,18 +1,17 @@
 package controller;
 
 import controller.product.ProductCSVHandler;
-import controller.user.LogInCSVHandler;
 import validation.InputNumberValidator;
 import view.Menu;
 
 
 public class RunShopBuyerMenu {
-    static final String FILE_NAME_PRODUCT = "./src/db/product.csv";
+    public static final String FILE_NAME_PRODUCT = "./src/db/product.csv";
     public void runBuyerMenu() {
         int numberOfMenu;
         do {
             Menu.pageMenuShopBuyers();
-            numberOfMenu = InputNumberValidator.choice();
+            numberOfMenu = InputNumberValidator.choiceInt();
             switch (numberOfMenu) {
                 case 1:
                     System.out.println(ProductCSVHandler.readFromFileProduct(FILE_NAME_PRODUCT));

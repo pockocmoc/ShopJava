@@ -10,7 +10,7 @@ public class Run {
         int numberOfMenu;
         do {
             Menu.pageHeadMenuView();
-            numberOfMenu = InputNumberValidator.choice();
+            numberOfMenu = InputNumberValidator.choiceInt();
             switch (numberOfMenu) {
                 case 1:
                     runLogin();

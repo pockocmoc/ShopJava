@@ -1,5 +1,6 @@
 package controller;
 
+import controller.product.AddProductAdminCSV;
 import controller.product.ProductCSVHandler;
 import validation.InputNumberValidator;
 import view.Menu;
@@ -11,13 +12,13 @@ public class RunAdminGoodsManagement {
         int numberOfMenu;
         do {
             Menu.pageMenuGoodsManagement();
-            numberOfMenu = InputNumberValidator.choice();
+            numberOfMenu = InputNumberValidator.choiceInt();
             switch (numberOfMenu) {
                 case 1:
                     System.out.println(ProductCSVHandler.readFromFileProduct(FILE_NAME_PRODUCT));
                     break;
                 case 2:
-
+                    AddProductAdminCSV.addNewProduct();
                     break;
                 case 3:
                     break;

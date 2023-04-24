@@ -8,7 +8,7 @@ public class RunAdminCustomerManagement {
         int numberOfMenu;
         do {
             Menu.pageMenuCustomerManagement();
-            numberOfMenu = InputNumberValidator.choice();
+            numberOfMenu = InputNumberValidator.choiceInt();
             switch (numberOfMenu) {
                 case 1:
                     break;
