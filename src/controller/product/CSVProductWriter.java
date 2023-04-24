@@ -19,7 +19,7 @@ public class CSVProductWriter {
         }
     }
 
-    private static void appendLineProduct(List<Product> products, FileWriter writer) throws IOException {
+    static void appendLineProduct(List<Product> products, FileWriter writer) throws IOException {
         for (Product product : products) {
             writer.append(String.valueOf(product.getId()));
             writer.append(RegistrationCSVHandler.CSV_SEPARATOR);

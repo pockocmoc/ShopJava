@@ -6,11 +6,13 @@ import validation.InputNumberValidator;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import static controller.RunShopBuyerMenu.FILE_NAME_PRODUCT;
+import static controller.product.CSVProductWriter.appendLineProduct;
 
 public class AddProductAdminCSV {
     static List<Product> products = new ArrayList<>();
@@ -48,5 +50,72 @@ public class AddProductAdminCSV {
             e.printStackTrace();
         }
         return maxId + 1;
+    }
+    public static void removeProduct(String fileName, int id, int quantity) {
+        List<Product> products1 = ProductCSVHandler.readFromFileProduct(fileName);
+        boolean isProductFound = false;
+        for (Product product : products1) {
+            if (product.getId() == id) {
+                if (product.getQuantity() < quantity) {
+                    System.out.println("Недостаточное количество товара для удаления!");
+                    return;
+                } else if (product.getQuantity() == quantity) {
+                    products1.remove(product);
+                    System.out.println("Товар удален!");
+                } else {
+                    product.setQuantity(product.getQuantity() - quantity);
+                    System.out.println("Товар удален! Количество: " + quantity);
+                }
+                isProductFound = true;
+                break;
+            }
+        }
+        if (!isProductFound) {
+            System.out.println("Нет товара с таким номером!");
+        }
+
+        overwriteFile(fileName, products1);
+    }
+    public static void overwriteFile(String fileName, List<Product> products) {
+        try (FileWriter writer = new FileWriter(fileName)) {
+
+            appendLineProduct(products, writer);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public static void editProduct(String fileName, int id) {
+        List<Product> products1 = ProductCSVHandler.readFromFileProduct(fileName);
+        boolean isProductFound = false;
+        for (Product product : products1) {
+            if (product.getId() == id) {
+                System.out.println("Введите новое имя товара или нажмите Enter, чтобы оставить без изменения: ");
+                String newName = EnterName.enterName();
+                if (!newName.isEmpty()) {
+                    product.setName(newName);
+                }
+
+                System.out.println("Введите новую цену товара или нажмите Enter, чтобы оставить без изменения: ");
+                String newPrice = EnterName.enterName();
+                if (!newPrice.isEmpty()) {
+                    product.setPrice(Double.parseDouble(newPrice));
+                }
+
+                System.out.println("Введите новое количество товара или нажмите Enter, чтобы оставить без изменения: ");
+                String newQuantity = EnterName.enterName();
+                if (!newQuantity.isEmpty()) {
+                    product.setQuantity(Integer.parseInt(newQuantity));
+                }
+
+                isProductFound = true;
+                System.out.println("Данные товара успешно изменены!");
+                break;
+            }
+        }
+        if (!isProductFound) {
+            System.out.println("Нет товара с таким номером!");
+        }
+
+        overwriteFile(fileName, products1);
     }
 }

@@ -2,6 +2,7 @@ package controller;
 
 import controller.product.AddProductAdminCSV;
 import controller.product.ProductCSVHandler;
+import validation.EnterName;
 import validation.InputNumberValidator;
 import view.Menu;
 
@@ -21,8 +22,16 @@ public class RunAdminGoodsManagement {
                     AddProductAdminCSV.addNewProduct();
                     break;
                 case 3:
+                    System.out.println("Введите номер товара, для редактирования его карточки: ");
+                    int id = InputNumberValidator.choiceInt();
+                    AddProductAdminCSV.editProduct(FILE_NAME_PRODUCT, id);
                     break;
                 case 4:
+                    System.out.println("Выбирите номер товара для удаления: ");
+                    int removeId = InputNumberValidator.choiceInt();
+                    System.out.println("Выбирите количество удаляемого товара: ");
+                    int quantity = InputNumberValidator.choiceInt();
+                    AddProductAdminCSV.removeProduct(FILE_NAME_PRODUCT, removeId, quantity);
                     break;
                 case 5:
                     break;
