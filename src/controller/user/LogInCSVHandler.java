@@ -52,12 +52,13 @@ public class LogInCSVHandler {
             List<Buyer> buyers = new ArrayList<>(readFromFileBuyers(FILE_NAME_USERS));
             for (Buyer buyer : buyers) {
                 if (buyer.getLogin().equals(login) && buyer.getPassword().equals(password)) {
+                    buyer.setLoggedInBuyer(buyer); // ????
                     if (buyer.getIsItAnAdministrator() == 1) {
                         System.out.println(login + ", вы вошли в систему как администратор");
                         RunShopHeadAdminMenu runShopHeadAdminMenu = new RunShopHeadAdminMenu();
                         runShopHeadAdminMenu.runAdminMenu();
                     } else {
-                        System.out.println(login +": вход выполнен.");
+                        System.out.println(login + ": вход выполнен.");
                         RunShopBuyerMenu runShopBuyerMenu = new RunShopBuyerMenu();
                         runShopBuyerMenu.runBuyerMenu();
                     }

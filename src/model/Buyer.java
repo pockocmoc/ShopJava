@@ -11,6 +11,7 @@ public class Buyer {
     private String login;
     private String password;
     private double wallet;
+    private static Buyer loggedInBuyer;
 
     public Buyer(int id, int isItAnAdministrator, String surname, String name,
                  String patronymic, String phoneNumber, String email,
@@ -107,6 +108,13 @@ public class Buyer {
         this.wallet = wallet;
     }
 
+    public static Buyer getLoggedInBuyer() {
+        return loggedInBuyer;
+    }
+
+    public void setLoggedInBuyer(Buyer buyer) {
+        loggedInBuyer = buyer;
+    }
 
     @Override
     public String toString() {
@@ -116,14 +124,14 @@ public class Buyer {
                     " " + name +
                     " " + patronymic +
                     ", номер телефона: " + phoneNumber +
-                    ", адресс электронной почты: " + email;
+                    ", адрес электронной почты: " + email;
         } else {
             return "\nАдминистратор: id " + id +
                     ", " + surname +
                     " " + name +
                     " " + patronymic +
                     ", номер телефона: " + phoneNumber +
-                    ", адресс электронной почты: " + email;
+                    ", адрес электронной почты: " + email;
         }
     }
 }
