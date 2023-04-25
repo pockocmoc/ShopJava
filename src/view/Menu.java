@@ -37,7 +37,7 @@ public class Menu {
         System.out.println("Выберите пункт меню: ");
         System.out.println();
         System.out.println("1. Управление товарами.");
-        System.out.println("2. Управление покупателями");
+        System.out.println("2. Управление пользователями");
         System.out.println("3. Выход в основное меню.");
 
     }
@@ -59,13 +59,13 @@ public class Menu {
 
     public static void pageMenuCustomerManagement() {
         delimiter();
-        System.out.println("\t\tУправление покупателями.");
+        System.out.println("\t\tУправление пользователями.");
         delimiter();
         System.out.println("Выберите пункт меню:");
         System.out.println();
-        System.out.println("1. Список покупателей.");
+        System.out.println("1. Список пользователей.");
         System.out.println("2. Назначение администратора.");
-        System.out.println("3. Удаление покупателя.");
+        System.out.println("3. Удаление пользователя.");
         System.out.println("4. Назад.");
 
     }

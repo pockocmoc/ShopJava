@@ -15,10 +15,9 @@ import static controller.RunShopBuyerMenu.FILE_NAME_PRODUCT;
 import static controller.product.CSVProductWriter.appendLineProduct;
 
 public class AddProductAdminCSV {
-    static List<Product> products = new ArrayList<>();
 
     public static void addNewProduct() {
-
+        List<Product> products = new ArrayList<>();
         System.out.println("Введите имя товара: ");
         String name = EnterName.enterName();
         System.out.println("Введите цену товара: ");
@@ -51,6 +50,7 @@ public class AddProductAdminCSV {
         }
         return maxId + 1;
     }
+
     public static void removeProduct(String fileName, int id, int quantity) {
         List<Product> products1 = ProductCSVHandler.readFromFileProduct(fileName);
         boolean isProductFound = false;
@@ -76,6 +76,7 @@ public class AddProductAdminCSV {
 
         overwriteFile(fileName, products1);
     }
+
     public static void overwriteFile(String fileName, List<Product> products) {
         try (FileWriter writer = new FileWriter(fileName)) {
 
@@ -84,6 +85,7 @@ public class AddProductAdminCSV {
             e.printStackTrace();
         }
     }
+
     public static void editProduct(String fileName, int id) {
         List<Product> products1 = ProductCSVHandler.readFromFileProduct(fileName);
         boolean isProductFound = false;

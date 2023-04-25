@@ -7,6 +7,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 
+import static controller.user.RegistrationCSVHandler.FILE_NAME_USERS;
+
 public class CsvBuyersWriter {
     public static void writeToBuyersFile(String fileName, List<Buyer> buyers) {
         try (FileWriter writer = new FileWriter(fileName, true)) {
@@ -41,5 +43,53 @@ public class CsvBuyersWriter {
             writer.append(String.valueOf(buyer.getWallet()));
             writer.append("\n");
         }
+    }
+
+    public static void appointAnAdministrator(String fileName, int id) {
+        List<Buyer> buyers = LogInCSVHandler.readFromFileBuyers(FILE_NAME_USERS);
+        boolean isProductFound = false;
+        for (Buyer buyer : buyers) {
+            if (buyer.getId() == id) {
+                int newAdmin = 1;
+                buyer.setIsItAnAdministrator(newAdmin);
+
+                isProductFound = true;
+                System.out.println("Данные успешно изменены!");
+                break;
+            }
+        }
+        if (!isProductFound) {
+            System.out.println("Нет пользователя с таким номером!");
+        }
+
+        overwriteFileBuyers(fileName, buyers);
+    }
+
+    public static void overwriteFileBuyers(String fileName, List<Buyer> buyers) {
+        try (FileWriter writer = new FileWriter(fileName)) {
+
+            appendLineBuyers(buyers, writer);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public static void removeBuyer(String fileName, int id) {
+        List<Buyer> buyerList = LogInCSVHandler.readFromFileBuyers(fileName);
+        boolean isBuyerFound = false;
+
+        for (Buyer buyer : buyerList) {
+            if (buyer.getId() == id) {
+                buyerList.remove(buyer);
+                System.out.println("Пользователь удален!");
+                isBuyerFound = true;
+                break;
+            }
+        }
+
+        if (!isBuyerFound) {
+            System.out.println("Нет пользователя с таким номером!");
+        }
+
+        overwriteFileBuyers(fileName, buyerList);
     }
 }

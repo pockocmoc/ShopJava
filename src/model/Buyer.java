@@ -107,13 +107,23 @@ public class Buyer {
         this.wallet = wallet;
     }
 
+
     @Override
     public String toString() {
-        return "\nid " + id +
-                ", " + surname +
-                " " + name +
-                " " + patronymic +
-                ", номер телефона: " + phoneNumber +
-                ", адресс электронной почты: " + email;
+        if (isItAnAdministrator == 0) {
+            return "\nid " + id +
+                    ", " + surname +
+                    " " + name +
+                    " " + patronymic +
+                    ", номер телефона: " + phoneNumber +
+                    ", адресс электронной почты: " + email;
+        } else {
+            return "\nАдминистратор: id " + id +
+                    ", " + surname +
+                    " " + name +
+                    " " + patronymic +
+                    ", номер телефона: " + phoneNumber +
+                    ", адресс электронной почты: " + email;
+        }
     }
 }
