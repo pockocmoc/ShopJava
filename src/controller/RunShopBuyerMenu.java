@@ -2,8 +2,14 @@ package controller;
 
 import controller.product.ProductCSVHandler;
 import controller.product.PurchaseOfGoods;
+import controller.soldout.CSVListOfPurchasedGoodsHandler;
 import validation.InputNumberValidator;
 import view.Menu;
+
+import java.util.Arrays;
+import java.util.List;
+
+import static controller.user.RegistrationCSVHandler.FILE_NAME_SOLD_OUT_GOODS;
 
 
 public class RunShopBuyerMenu {
@@ -29,6 +35,10 @@ public class RunShopBuyerMenu {
                     System.out.println(PurchaseOfGoods.balanceCheck());
                     break;
                 case 4:
+                    List<String[]> data = CSVListOfPurchasedGoodsHandler.readFromFile(FILE_NAME_SOLD_OUT_GOODS);
+                    for (String[] values : data) {
+                        System.out.println(Arrays.toString(values));
+                    }
                     break;
                 case 5:
                     break;
@@ -37,6 +47,7 @@ public class RunShopBuyerMenu {
             }
         } while (numberOfMenu != 5);
     }
+
 }
 
 

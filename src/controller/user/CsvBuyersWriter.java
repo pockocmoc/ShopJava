@@ -73,6 +73,7 @@ public class CsvBuyersWriter {
             e.printStackTrace();
         }
     }
+
     public static void removeBuyer(String fileName, int id) {
         List<Buyer> buyerList = LogInCSVHandler.readFromFileBuyers(fileName);
         boolean isBuyerFound = false;
@@ -81,6 +82,25 @@ public class CsvBuyersWriter {
             if (buyer.getId() == id) {
                 buyerList.remove(buyer);
                 System.out.println("Пользователь удален!");
+                isBuyerFound = true;
+                break;
+            }
+        }
+
+        if (!isBuyerFound) {
+            System.out.println("Нет пользователя с таким номером!");
+        }
+
+        overwriteFileBuyers(fileName, buyerList);
+    }
+    public static void updateBuyerWallet(String fileName, int id, double newWalletValue) {
+        List<Buyer> buyerList = LogInCSVHandler.readFromFileBuyers(fileName);
+        boolean isBuyerFound = false;
+
+        for (Buyer buyer : buyerList) {
+            if (buyer.getId() == id) {
+                buyer.setWallet(newWalletValue);
+                System.out.println("Значение кошелька пользователя " + buyer.getName() + " изменено на " + newWalletValue);
                 isBuyerFound = true;
                 break;
             }

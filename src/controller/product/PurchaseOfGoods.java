@@ -1,9 +1,15 @@
 package controller.product;
 
+import controller.soldout.CSVListOfPurchasedGoodsHandler;
+import controller.user.CsvBuyersWriter;
 import model.Buyer;
 import model.Product;
 
+import java.util.Date;
 import java.util.List;
+
+import static controller.user.RegistrationCSVHandler.FILE_NAME_SOLD_OUT_GOODS;
+import static controller.user.RegistrationCSVHandler.FILE_NAME_USERS;
 
 public class PurchaseOfGoods {
     public static void buyProduct(String fileName, int id, int quantity) {
@@ -21,6 +27,13 @@ public class PurchaseOfGoods {
                         return;
                     } else {
                         loginBuyerInfo().setWallet(loginBuyerInfo().getWallet() - totalPrice);
+                        int idLoginBuyer = loginBuyerInfo().getId();
+                        double walletNewBuyer = loginBuyerInfo().getWallet();
+                        Date date = new Date();
+                        String dateString = String.valueOf(date);
+                        CsvBuyersWriter.updateBuyerWallet(FILE_NAME_USERS, idLoginBuyer, walletNewBuyer);
+                        CSVListOfPurchasedGoodsHandler.writePurchaseToFile(FILE_NAME_SOLD_OUT_GOODS,
+                                product.getName(), loginBuyerInfo().getLogin(), dateString, quantity);
                         if (product.getQuantity() == quantity) {
                             products.remove(product);
                             System.out.println("Товар куплен!");
@@ -44,7 +57,9 @@ public class PurchaseOfGoods {
     public static Buyer loginBuyerInfo() {
         return Buyer.getLoggedInBuyer();
     }
+
     public static String balanceCheck() {
-        return "Баланс счета: " + Buyer.getLoggedInBuyer().getWallet();
+        char rub = '₽';
+        return "Баланс счета: " + Buyer.getLoggedInBuyer().getWallet() + " " + rub;
     }
 }
